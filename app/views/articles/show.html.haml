@@ -1,8 +1,10 @@
 %h1= @article.title
+
 %p
   Tags:
   - @article.tags.each do |tag|
     = link_to tag.name, tag_path(tag)
+%p= image_tag @article.image.url(:medium)
 %p= @article.content
 
 %h3 Comments #{@article.comments.size}

@@ -30,7 +30,7 @@ gem 'jquery-ui-rails','~> 4.2.1'
 gem 'haml'
 gem 'haml-rails'
 gem 'execjs'
-
+gem "paperclip"
 # ############################
 # Testing
 # ############################
