@@ -3,7 +3,7 @@
 
 %h3 Comments #{@article.comments.size}
 %div
-  = render partial: 'articles/comment', collection: @article.comments
+  = render partial: 'comments/comment', collection: @article.comments
 
 %div
   = render partial: 'comments/form'
