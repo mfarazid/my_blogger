@@ -25,6 +25,8 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
   gem 'therubyracer', platforms: :ruby
 end
+gem 'jquery-rails'
+gem 'jquery-ui-rails','~> 4.2.1'
 gem 'haml'
 gem 'haml-rails'
 gem 'execjs'

@@ -1,0 +1,6 @@
+%h1 All Articles
+= link_to "Create a New Article", new_article_path, class: "new_article"
+%ul#articles
+  - @articles.each do |article|
+    %li
+      = link_to article.title, article_path(article), class: 'article_title'
