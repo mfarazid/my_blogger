@@ -1,0 +1,7 @@
+%h1 All Tags
+%ul#tags
+  - @tags.each do |tag|
+    %li
+      = tag.name
+      |
+      \#{link_to "delete", tag_path(tag), method: :delete, data: {confirm: "Really delete the article?"}}
