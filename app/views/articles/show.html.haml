@@ -1,7 +1,15 @@
-%p#notice= notice
 %h1= @article.title
 %p= @article.content
-= link_to 'Back', articles_path
-|
-\#{link_to 'Edit', edit_article_path(@article)} |
-\#{link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}}
+
+%h3 Comments #{@article.comments.size}
+%div
+  = render partial: 'articles/comment', collection: @article.comments
+
+%div
+  = render partial: 'comments/form'
+
+%div
+  = link_to 'Back', articles_path
+  |
+  \#{link_to 'Edit', edit_article_path(@article)} |
+  \#{link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}}
