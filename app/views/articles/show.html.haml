@@ -16,6 +16,8 @@
 
 %div
   = link_to 'Back', articles_path
-  |
-  \#{link_to 'Edit', edit_article_path(@article)} |
-  \#{link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}}
+  %br
+  %br
+  - if @article.user_id == current_user.id
+    \#{link_to 'Edit', edit_article_path(@article)} |
+    \#{link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}}

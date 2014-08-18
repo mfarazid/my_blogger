@@ -17,7 +17,7 @@
     = f.text_field :tag_list  
   .field
     - if @article.image.exists?
-      = image_tag @article.image.url
+      = image_tag @article.image.url(:medium)
       %br/
     = f.label :image, "Attach a New Image"
     %br/

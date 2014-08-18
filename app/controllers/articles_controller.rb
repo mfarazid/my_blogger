@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @articles = Article.all
@@ -12,13 +14,19 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    
   end
 
   def edit
+    if @article.user_id != current_user.id
+      flash.notice = "You're Not Authorized to edit this Article!"
+      redirect_to articles_url
+    end
   end
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
 
     respond_to do |format|
       if @article.save
@@ -46,11 +54,16 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
-    respond_to do |format|
-      flash.notice = "Article '#{@article.title}' Removed!"
-      format.html { redirect_to articles_url }
-      format.json { head :no_content }
+    if @article.user_id != current_user.id
+      flash.notice = "You're Not Authorized to delete this Article!"
+      redirect_to articles_url
+    else
+      @article.destroy
+      respond_to do |format|
+        flash.notice = "Article '#{@article.title}' Removed!"
+        format.html { redirect_to articles_url }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -60,6 +73,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, :tag_list, :image)
+      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id)
     end
 end
