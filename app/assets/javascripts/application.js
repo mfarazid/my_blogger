@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+function like(id) {
+  $.ajax({
+      Default: "GET",
+      dataType: "json",
+      url: "/articles/like/"+id,
+      success: function(data){
+        var like = data.like;
+        $('#like p').html(like);
+        $('#like input[type=button]').attr("disabled", "disabled");
+      }
+  }); 
+} 

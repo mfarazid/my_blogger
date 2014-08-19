@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @comment.article_id = @article.id
+    @article.increment!(:view_count)
   end
 
   def new
@@ -67,6 +68,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def like
+    @article = Article.find(params[:id])
+    @article.increment!(:like)
+    respond_to do |format|
+      format.json { render action: 'show'}
+    end
+  end
+  
   private
     def set_article
       @article = Article.find(params[:id])

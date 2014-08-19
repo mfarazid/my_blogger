@@ -1,4 +1,4 @@
-%h1= @article.title
+%h1 #{@article.title} (#{@article.view_count})
 
 %p
   Tags:
@@ -6,7 +6,11 @@
     = link_to tag.name, tag_path(tag)
 %p= image_tag @article.image.url(:medium)
 %p= @article.content
-
+%hr
+%div#like
+  %input{:onclick => "like('#{@article.id}')", :type => "button", :value => "Like"}
+  %p= @article.like
+%hr
 %h3 Comments #{@article.comments.size}
 %div
   = render partial: 'comments/comment', collection: @article.comments
