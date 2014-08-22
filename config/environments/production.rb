@@ -77,4 +77,19 @@ MyBlogger::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+    # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.elphax.com",
+    port: 25,
+    authentication: "plain",
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"],
+    openssl_verify_mode: 'none'
+  }
+
+  # Specify what domain to use for mailer URLs
+
+  config.action_mailer.default_url_options = { host: 'my-blogger.elphax.com', port: 3000 }
 end

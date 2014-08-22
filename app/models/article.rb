@@ -1,8 +1,11 @@
 class Article < ActiveRecord::Base
+  before_create :set_hidden_flag
+  
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
   
+
   validates_presence_of :title, :content, message: "Required"
 
   has_attached_file :image, styles: { large: "800x800>", medium: "400x400>", thumb: "100x100>" }
@@ -20,4 +23,8 @@ class Article < ActiveRecord::Base
     self.tags = new_or_found_tags
   end
 
+  private
+    def set_hidden_flag
+      self.hidden = 1
+    end  
 end

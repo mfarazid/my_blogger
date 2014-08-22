@@ -4,13 +4,17 @@ class ArticlesController < ApplicationController
 
 
   def index
-    @articles = Article.all
+    @articles = Article.where(:hidden => false).order("created_at DESC")
   end
 
   def show
     @comment = Comment.new
     @comment.article_id = @article.id
     @article.increment!(:view_count)
+    if @article.hidden == true 
+      flash.notice = "This article is currently unavailable to view at this time!"
+      redirect_to articles_url
+    end
   end
 
   def new
@@ -28,11 +32,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
-
     respond_to do |format|
       if @article.save
-        flash.notice = "Article '#{@article.title}' Created!"
-        format.html { redirect_to @article }
+        ArticleMailer.article_submitted(@article).deliver
+        flash.notice = "Thank you for your submission. This article needs an administrative approval before publishing to the elphax blogger."
+        format.html { redirect_to articles_url }
         format.json { render action: 'show', status: :created, location: @article }
       else
         format.html { render action: 'new' }
@@ -82,6 +86,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id)
+      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id, :hidden, :published_at, :like, :view_count)
     end
 end
