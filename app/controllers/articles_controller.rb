@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
 
   def edit
     if @article.user_id != current_user.id
-      flash.notice = "You're Not Authorized to edit this Article!"
+      flash.notice = "You're not authorized to update this article!"
       redirect_to articles_url
     end
   end
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        flash.notice = "Article '#{@article.title}' Updated!"
+        flash.notice = "Article '#{@article.title}' updated!"
         format.html { redirect_to @article }
         format.json { head :no_content }
       else
@@ -60,12 +60,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     if @article.user_id != current_user.id
-      flash.notice = "You're Not Authorized to delete this Article!"
+      flash.notice = "You're not authorized to delete this article!"
       redirect_to articles_url
     else
       @article.destroy
       respond_to do |format|
-        flash.notice = "Article '#{@article.title}' Removed!"
+        flash.notice = "Article '#{@article.title}' removed!"
         format.html { redirect_to articles_url }
         format.json { head :no_content }
       end

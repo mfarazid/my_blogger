@@ -92,4 +92,6 @@ MyBlogger::Application.configure do
   # Specify what domain to use for mailer URLs
 
   config.action_mailer.default_url_options = { host: 'my-blogger.elphax.com', port: 3000 }
+
+  Koala.http_service.ca_file = Rails.root.join("cacert.pem").to_s
 end

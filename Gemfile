@@ -18,6 +18,14 @@ group :production do
 end
 
 # ############################
+# Social login
+# ############################
+gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
+
+# ############################
 # Interface
 # ############################
 group :assets do
@@ -32,6 +40,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'execjs'
 gem "paperclip"
+
 # ############################
 # Testing
 # ############################
