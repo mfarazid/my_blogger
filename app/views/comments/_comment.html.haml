@@ -1,6 +1,10 @@
 / chat item
 .item
-  = image_tag "default_pic.png"
+  - avatar = avatar_url(comment.email)
+  - if avatar == "http://gravatar.com/avatar/89affc239bd0c1b6481faaec3cf0c39a.png"
+    = image_tag "default_pic.png"
+  - else
+    = image_tag avatar_url(comment.email)
   %p.message
     %a.name{:href => "#"}
       %small.text-muted.pull-right

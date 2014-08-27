@@ -45,6 +45,7 @@ gem 'toastr-rails'
 gem 'font-awesome-rails'
 gem 'will_paginate-bootstrap'
 gem 'redactor-rails'
+gem "html_truncator", "~>0.2"
 
 # ############################
 # Testing

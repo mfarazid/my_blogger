@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     @comment.article_id = @article.id
     @article.increment!(:view_count)
     if @article.hidden == true 
-      toast('error','This article is currently unavailable to view at this time!')
+      toast('error','This Blog is currently unavailable to view at this time!')
       redirect_to articles_url
     end
   end
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
 
   def edit
     if @article.user_id != current_user.id
-      toast('error',"You're not authorized to update this article!")
+      toast('error',"You're not authorized to update this blog!")
       redirect_to articles_url
     end
   end
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         ArticleMailer.article_submitted(@article).deliver
-        toast('success',"Thank you for your submission. This article needs an administrative approval before publishing to the elphax blogger.")
+        toast('success',"Thank you for your submission. Your blog submitted successfully and this blog needs an administrative approval before publishing to MyBlogger site.")
         format.html { redirect_to articles_url }
         format.json { render action: 'show', status: :created, location: @article }
       else
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        toast('success',"Article '#{@article.title}' updated!")
+        toast('success',"Blog '#{@article.title}' updated!")
         format.html { redirect_to @article }
         format.json { head :no_content }
       else
@@ -64,12 +64,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     if @article.user_id != current_user.id
-      toast('error',"You're not authorized to delete this article!")
+      toast('error',"You're not authorized to delete this blog!")
       redirect_to articles_url
     else
       @article.destroy
       respond_to do |format|
-        toast('success',"Article '#{@article.title}' removed!")
+        toast('success',"Blog '#{@article.title}' removed!")
         format.html { redirect_to articles_url }
         format.json { head :no_content }
       end

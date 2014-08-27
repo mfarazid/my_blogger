@@ -10,7 +10,7 @@ $(document).ready(
     { autoresize: false,
       buttons: ['html', 'formatting',  'bold', 'italic', 'deleted', 
                 'unorderedlist', 'orderedlist', 'outdent', 'indent', 
-                'alignment', 'horizontalrule']
+                'alignment', 'horizontalrule', 'link']
     }
   );
 });
