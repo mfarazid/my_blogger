@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
       :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   validates_presence_of :name
   has_many :authorizations
+  has_many :articles
 
   def self.new_with_session(params,session)
     if session["devise.user_attributes"]

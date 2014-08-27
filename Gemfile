@@ -8,11 +8,8 @@ gem 'thin'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
 gem 'devise'
+
 group :production do 
   gem 'mysql2'
 end
@@ -33,6 +30,7 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
   gem 'uglifier', '>= 1.3.0'
   gem 'therubyracer', platforms: :ruby
+
 end
 gem 'jquery-rails'
 gem 'jquery-ui-rails','~> 4.2.1'
@@ -40,6 +38,13 @@ gem 'haml'
 gem 'haml-rails'
 gem 'execjs'
 gem "paperclip"
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+# display nicer notifications using bootstrap 
+gem 'toastr-rails'
+gem 'font-awesome-rails'
+gem 'will_paginate-bootstrap'
+gem 'redactor-rails'
 
 # ############################
 # Testing

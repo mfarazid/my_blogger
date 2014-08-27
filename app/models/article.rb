@@ -1,15 +1,20 @@
 class Article < ActiveRecord::Base
   before_create :set_hidden_flag
-  
+  belongs_to :user
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
-  
+    
+  scope :created_between, lambda {|start_date, end_date| where("created_at >= ? AND created_at <= ?", start_date, end_date )}
 
   validates_presence_of :title, :content, message: "Required"
 
-  has_attached_file :image, styles: { large: "800x800>", medium: "400x400>", thumb: "100x100>" }
-  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+  has_attached_file :image
+  validates_attachment_content_type :image, 
+      :content_type => ["image/jpg", "image/jpeg", "image/png"]
+  
+  validates_attachment_size :image, 
+      :less_than => 2.megabytes, message: "File size must be less than 2 MB"
 
   def tag_list
     self.tags.collect do |tag|

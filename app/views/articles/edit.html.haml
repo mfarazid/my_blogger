@@ -1,5 +1,15 @@
-%h1 Editing article
-= render 'form'
-= link_to 'Show', @article
-|
-\#{link_to 'Back', articles_path}
+.row
+  .col-md-8.blog-main  
+    .box.box-primary
+      .box-header
+        %h2 Editing Blog
+      .box-body            
+        %div
+          = render 'form'  
+  .col-md-3.col-sm-offset-1.blog-sidebar
+    .sidebar-module.sidebar-module-inset.box.box-info
+      %h4 About
+      %p
+        Etiam porta
+        %em sem malesuada magna
+        mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.

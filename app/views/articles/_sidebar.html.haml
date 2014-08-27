@@ -1,0 +1,29 @@
+.col-md-3.col-sm-offset-1.blog-sidebar
+  .sidebar-module.sidebar-module-inset.box.box-info
+    %h4 About
+    %p
+      %b Welcome! to MyBlogger.
+      This is the free public blog where you can share your stories, ideas, photos, and more. This blog created using Ruby on Rails, MySql and Bootstrap.
+  .sidebar-module.box
+    %h4 Archives
+    %ol.list-unstyled
+      %li
+        %a{:href => articles_path} All Blogs
+      %li
+        %a{:href => articles_path(:start_date => Time.now.beginning_of_month, :end_date => Time.now.end_of_month)} #{Time.now.strftime("%B %Y")}
+      %li
+        %a{:href => articles_path(:start_date => 1.month.ago.beginning_of_month, :end_date => 1.month.ago.end_of_month)} #{1.month.ago.strftime("%B %Y")}
+      %li
+        %a{:href => articles_path(:start_date => 2.month.ago.beginning_of_month, :end_date => 2.month.ago.end_of_month)} #{2.month.ago.strftime("%B %Y")}
+      %li
+        %a{:href => articles_path(:start_date => 3.month.ago.beginning_of_month, :end_date => 3.month.ago.end_of_month)} #{3.month.ago.strftime("%B %Y")}
+      %li
+        %a{:href => articles_path(:start_date => 4.month.ago.beginning_of_month, :end_date => 4.month.ago.end_of_month)} #{4.month.ago.strftime("%B %Y")}
+      %li
+        %a{:href => articles_path(:start_date => 5.month.ago.beginning_of_month, :end_date => 5.month.ago.end_of_month)} #{5.month.ago.strftime("%B %Y")}
+  .sidebar-module.box
+    %h4 Tags
+    - @tags.each do |t|
+      %span= link_to "#{t.name}", tag_path(t) 
+
+/ /.blog-sidebar

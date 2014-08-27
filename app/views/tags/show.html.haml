@@ -1,5 +1,13 @@
-%h1
-  Articles Tagged with #{@tag.name}
-%ul
-  - @tag.articles.each do |article|
-    %li= link_to article.title, article_path(article)
+.row
+  .col-md-8
+    .box.box-warning
+      .box-header
+        %i.fa.fa-file-text-o
+        .box-title
+          Blogs Tagged with (#{@tag.name})
+      .box-body
+        %ul
+          - @tag.articles.each do |article|
+            %li= link_to article.title, article_path(article)
+  = render 'sidebar'
+/ /.row            

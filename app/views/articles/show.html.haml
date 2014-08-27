@@ -1,27 +1,56 @@
-%h1 #{@article.title} (#{@article.view_count})
+.row
+  .col-lg-12.blog-main
+    .box.box-primary
+      .blog-post
+        .header
+          %div#blog-status
+            .btn.btn-app.pull-right
+              %span.badge.bg-red #{@article.view_count}
+              %i.fa.fa-eye  
+              Views         
+            .btn.btn-app.pull-right
+              %span#like.badge.bg-purple #{@article.like}
+              %i.fa.fa-heart-o 
+              Likes 
+            .btn.btn-app.pull-right
+              %span.badge.bg-aqua #{@article.comments.size}
+              %i.fa.fa-comments-o
+              Comments
+          %br      
+          %h2 #{@article.title}
+          %p.blog-post-meta #{@article.created_at.to_formatted_s(:long_ordinal)} by #{@article.user.name}            
 
-%p
-  Tags:
-  - @article.tags.each do |tag|
-    = link_to tag.name, tag_path(tag)
-%p= image_tag @article.image.url(:medium)
-%p= @article.content
-%hr
-%div#like
-  %input{:onclick => "like('#{@article.id}')", :type => "button", :value => "Like"}
-  %p= @article.like
-%hr
-%h3 Comments #{@article.comments.size}
-%div
-  = render partial: 'comments/comment', collection: @article.comments
+        .box-body            
+          %figure
+            = image_tag @article.image.url, :class => 'image_responsive'
+          %p #{@article.content}
+        .box-footer    
+          %input#like_it{:onclick => "like('#{@article.id}')", :type => "button", :value => "Like it", :class => "btn bg-maroon pull-right"}
+          %span
+            Tags:
+            - @article.tags.each do |tag|
+              = link_to tag.name, tag_path(tag), :class => 'label label-default'
+    / Chat box
+    - if @article.comments.any?
+      .box.box-success
+        .box-header
+          %i.fa.fa-comments-o
+          %h3.box-title Comments
+        #chat-box.box-body.chat
+          = render partial: 'comments/comment', collection: @article.comments
 
-%div
-  = render partial: 'comments/form'
+    / /.box (chat box)
+    / quick email widget
+    .box.box-info
+      .box-header
+        %i.fa.fa-comment-o
+        %h3.box-title Leave a comment
+      .box-body
+        = render partial: 'comments/form'
 
-%div
-  = link_to 'Back', articles_path
-  %br
-  %br
-  - if current_user && @article.user_id == current_user.id
-    \#{link_to 'Edit', edit_article_path(@article)} |
-    \#{link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}}
+    %div
+      = link_to 'Back to Blogs', articles_path, :class => "btn btn-default"
+      - if current_user && @article.user_id == current_user.id
+        = link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_article_path(@article), :class => "btn btn-default" 
+        = link_to "<i class='fa fa-trash-o'></i> Delete".html_safe, article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}, :class => "btn btn-default"
+    %br    

@@ -1,6 +1,54 @@
-%h1 All Articles
-= link_to "Create a New Article", new_article_path, class: "new_article"
-%ul#articles
-  - @articles.each do |article|
-    %li
-      = link_to article.title, article_path(article), class: 'article_title'
+.blog-header
+  %h1.blog-title MyBlogger
+  %p.lead This is the free public blog where you can share your stories, ideas, photos, and more. 
+.row
+  .col-md-8.blog-main
+    - if user_signed_in?
+      %p= link_to "Post a new article", new_article_path, :class => 'btn btn-success'  
+    - if @articles.any?
+      - @articles.each do |article|
+        .box.box-primary
+          .blog-post
+            .header
+              %div
+                %span.btn.pull-right
+                  %i.fa.fa-eye  
+                    .badge.bg-red #{article.view_count}          
+                %span.btn.pull-right
+                  %i.fa.fa-heart-o 
+                    .badge.bg-purple #{article.like}
+                %span.btn.pull-right
+                  %i.fa.fa-comments-o
+                    .badge.bg-aqua #{article.comments.size}
+              %br      
+              %h2 #{link_to article.title, article_path(article)}
+              %p.blog-post-meta 
+                %i.fa.fa-clock-o
+                #{article.created_at.to_formatted_s(:long)} 
+                %i.fa.fa-user
+                #{article.user.name}            
+
+            .box-body            
+              %figure
+                = image_tag article.image.url, :class => 'image_responsive'
+              %p #{article.content.lines[0].html_safe}
+              %p #{link_to 'CONTINUE READING', article_path(article), :class => 'btn btn-sm bg-olive'} 
+              / str.lines[2]
+            .box-footer
+              %span
+                %i.fa.fa-tag.fa-lg
+                - article.tags.each do |tag|
+                  = link_to tag.name, tag_path(tag), :class => 'label label-default'
+          / /.blog-post
+      = will_paginate @articles, renderer: BootstrapPagination::Rails    
+    - else
+      .box.box-primary
+        .box-body
+          .callout.callout-info
+            %i.fa.fa-exclamation-triangle &nbsp;&nbsp; No Bolgs found!
+            %p Please search for another criteria or go back to blogs #{link_to 'Back to Blogs', articles_path}
+
+
+  / /.blog-main
+  = render 'sidebar'
+/ /.row

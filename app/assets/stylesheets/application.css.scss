@@ -9,5 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap
+ *= require rails_bootstrap_forms
+ *= require toastr
+ *= require font-awesome
+ *= require redactor-rails
  *= require_tree .
  */

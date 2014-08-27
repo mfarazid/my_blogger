@@ -1,16 +1,15 @@
-%h3 Post a Comment
-= form_for [ @article, @comment ] do |f|
+= bootstrap_form_for([ @article, @comment ], inline_errors: false) do |f|
   - if @comment.errors.any?
-    %ul
-      - @comment.errors.full_messages.each do |msg|
-        %li= msg
-  %p
-    = f.label :author_name, "Your Name"
-    %br/
-    = f.text_field :author_name
-  %p
-    = f.label :content, "Your Content"
-    %br/
-    = f.text_area :content
-  %p
-    = f.submit 'Submit'
+    - @comment.errors.full_messages.each do |msg|
+      :javascript
+        var msg = " #{msg} ";
+        Command: toastr.error(msg);
+  .col-lg-6
+    = f.text_field :author_name, label: "Name"
+  .col-lg-6
+    / change this to email option
+    = f.text_field :author_name, label: "Email"
+  .col-lg-12
+    = f.text_area :content, label: "Comment", :style => "min-height:100px"
+  .box-footer.clearfix
+    = f.submit 'Submit', :class => 'pull-right btn btn-primary'

@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        flash.notice = "Comment Posted!"
+        toast('success',"Your comment has been Posted!")
         format.html { redirect_to article_path(@comment.article) }
       else
-        flash.notice = "Please enter your name and your comment!"
+        toast('error',"Please enter your name and comment!")
         format.html { redirect_to article_path(@comment.article) }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

@@ -1,5 +1,6 @@
 MyBlogger::Application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
   root to: "articles#index"
   get 'articles/like/:id' => "articles#like", as: :article_like
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, 

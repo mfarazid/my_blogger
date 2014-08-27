@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap
+//= require redactor-rails
+//= require toastr
 //= require_tree .
 
 
@@ -23,8 +25,12 @@ function like(id) {
       url: "/articles/like/"+id,
       success: function(data){
         var like = data.like;
-        $('#like p').html(like);
-        $('#like input[type=button]').attr("disabled", "disabled");
+        $('#like').html(like);
+        $('#like_it').attr("disabled", "disabled");
       }
   }); 
 } 
+
+  
+
+  

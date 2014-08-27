@@ -1,0 +1,22 @@
+.col-md-12.well
+  .col-sm-5
+    %h3 Sign up
+    = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  
+      = f.text_field :name, label: "Full Name", prepend: "<i class='fa fa-user'></i>".html_safe, required: true
+      = f.email_field :email, prepend: "<i class='fa fa-envelope-o'></i>".html_safe, required: true
+      = f.password_field :password, autocomplete: "off", help: "Must be at least #{@minimum_password_length} characters long", prepend: "<i class='fa fa-lock'></i>".html_safe, required: true    
+      = f.password_field :password_confirmation, autocomplete: "off", prepend: "<i class='fa fa-lock'></i>".html_safe 
+      = f.submit "Sign up", :class => 'btn bg-navy'
+  .col-sm-2
+  .ui.vertical.divider 
+    or
+  .col-sm-5
+    %h3 Login
+    %br
+    %br
+    - if devise_mapping.omniauthable?
+      - resource_class.omniauth_providers.each do |provider|
+        - if provider.to_s == "google_oauth2" 
+          %p= link_to "<i class='fa fa-google-plus'></i> Sing in with Google".html_safe, omniauth_authorize_path(resource_name, provider), :class => "btn btn-block btn-social btn-lg btn-google-plus"
+        - else
+          %p= link_to "<i class='fa fa-#{provider}'></i> Sing in with #{provider.to_s.titleize}".html_safe, omniauth_authorize_path(resource_name, provider), :class => "btn btn-block btn-social btn-lg btn-#{provider}"   
