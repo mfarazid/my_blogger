@@ -1,13 +1,19 @@
-%h3 Hello Administrator!
-%br
-%p  There was a recent submission to the Elphax Blogger which needs your approval in order to publish this article.  
-%hr
-%h3 Article details.
-%hr
-%h4 Title
-%p #{@article.title}
-%h4 Content
-%p #{@article.content}
-%br
-%br
-Thank you!
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+  %body.container
+    %h3 Hello Administrator!
+    %br
+    %p.text-light-blue There was a recent submission to the MyBlogger Site which needs your approval in order to publish this blog.
+    .box.box-primary
+      .box-header
+        %h3.box-title #{@article.title} 
+      .box-body
+        %figure
+          = image_tag @article.image.url, :class => 'image_responsive'
+        %p #{@article.content.html_safe} 
+        %hr
+        %p Please login #{link_to 'MyBlogger site', root_path} to manage blogs.    
+      .box-footer
+        %p Thank you!

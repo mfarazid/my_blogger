@@ -4,6 +4,6 @@ class ArticleMailer < ActionMailer::Base
   def article_submitted(article)
     admin_email = "mfarazid@gmail.com"
     @article = article
-    mail to: admin_email, subject: "Article submitted to the elphax blogger"
+    mail to: admin_email, subject: "Article submitted to the elphax blogger", content_type: "text/html"
   end  
 end

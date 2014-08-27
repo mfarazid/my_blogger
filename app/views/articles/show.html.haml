@@ -30,6 +30,7 @@
           %p #{@article.content.html_safe}
         .box-footer    
           %input#like_it{:onclick => "like('#{@article.id}')", :type => "button", :value => "Like it", :class => "btn bg-maroon pull-right"}
+          = social_share_button_tag(@article.title, :url => request.original_url, :image => @article.image.url)
           %span
             %i.fa.fa-tag.fa-lg
             - @article.tags.each do |tag|

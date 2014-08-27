@@ -31,7 +31,7 @@
             .box-body            
               %figure
                 = image_tag article.image.url, :class => 'image_responsive'
-              %p= HTML_Truncator.truncate(article.content, 25, "...#{link_to 'continue reading', article_path(article)}").html_safe #{}
+              %p= HTML_Truncator.truncate(article.content, 25, "...#{link_to 'continue reading', article_path(article)}").html_safe
 
             .box-footer
               %span

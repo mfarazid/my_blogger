@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require redactor-rails
+//= require social-share-button
 //= require toastr
 //= require_tree .
 

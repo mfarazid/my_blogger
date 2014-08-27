@@ -21,7 +21,7 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.10.0rc"
-
+gem 'social-share-button', '~> 0.1.6'
 # ############################
 # Interface
 # ############################
