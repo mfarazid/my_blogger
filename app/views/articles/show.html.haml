@@ -29,12 +29,13 @@
             = image_tag @article.image.url, :class => 'image_responsive'
           %p #{@article.content.html_safe}
         .box-footer    
-          %input#like_it{:onclick => "like('#{@article.id}')", :type => "button", :value => "Like it", :class => "btn bg-maroon pull-right"}
-          = social_share_button_tag(@article.title, :url => request.original_url, :image => @article.image.url)
           %span
             %i.fa.fa-tag.fa-lg
             - @article.tags.each do |tag|
               = link_to tag.name, tag_path(tag), :class => 'label label-default'
+          %hr
+          %span #{link_to "<i class='fa fa-thumbs-o-up'></i>".html_safe, '#', :onclick => "like('#{@article.id}')", :class => "btn bg-maroon btn-circle pull-right", :id => 'like_it'} #{social_share_button_tag(@article.title, :url => request.original_url, :image => @article.image.url)}
+
     / Chat box
     - if @article.comments.any?
       .box.box-success
@@ -55,7 +56,6 @@
 
     %div
       = link_to 'Back to Blogs', articles_path, :class => "btn btn-default"
-      - if current_user && @article.user_id == current_user.id
-        = link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_article_path(@article), :class => "btn btn-default" 
+      - if current_user && @article.user_id == current_user.id 
         = link_to "<i class='fa fa-trash-o'></i> Delete".html_safe, article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}, :class => "btn btn-default"
     %br    

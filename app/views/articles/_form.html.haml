@@ -8,17 +8,14 @@
   = f.text_field :title
   = f.text_area :content, :class => "redactor", :rows => 20, :cols => 120
   = f.text_field :tag_list, label: "Tags", help: "list each tag separated by comma (morning, day, night...)" 
-  - if @article.image.exists?
-    = image_tag @article.image.url, :class => "image_responsive"
-
-  = f.file_field :image, hide_label: :true, accept: 'image/png,image/gif,image/jpeg'
+  = f.file_field :image, label: "Attach an Image", accept: 'image/png,image/gif,image/jpeg'
   .input-group
-    %input#photoCover.form-control{:type => "text"}
+    %input#blog_image.form-control{:type => "text", :disabled => true}
     %span.input-group-addon  
       %a.btn.btn-xs.btn-success{:onclick => "$('input[id=article_image]').click();"} Browse
   :javascript
     $('input[id=article_image]').change(function() {
-      $('#photoCover').val($(this).val());
+      $('#blog_image').val($(this).val());
     });
   
   %hr

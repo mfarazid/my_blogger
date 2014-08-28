@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :set_article, only: [:show, :destroy]
   
   def index
     if params[:start_date].present? && params[:end_date].present?
@@ -26,13 +26,6 @@ class ArticlesController < ApplicationController
     
   end
 
-  def edit
-    if @article.user_id != current_user.id
-      toast('error',"You're not authorized to update this blog!")
-      redirect_to articles_url
-    end
-  end
-
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
@@ -44,19 +37,6 @@ class ArticlesController < ApplicationController
         format.json { render action: 'show', status: :created, location: @article }
       else
         format.html { render action: 'new' }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @article.update(article_params)
-        toast('success',"Blog '#{@article.title}' updated!")
-        format.html { redirect_to @article }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end

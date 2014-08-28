@@ -23,17 +23,52 @@
           %a.navbar-brand{:href => root_path} MyBlogger
         .navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
+
             - if user_signed_in?
-              - if current_user.authorizations.any?
-                %li
-                  = link_to "<i class='fa fa-edit'></i> Edit Profile".html_safe, edit_user_path(current_user)
-                %li
-                  = link_to "Logout (#{current_user.name})", destroy_user_session_path, method: :delete, :class => 'item'
-              - else
-                %li
-                  = link_to "<i class='fa fa-edit'></i> Edit Profile".html_safe, edit_user_registration_path, :class => 'item'
-                %li
-                  = link_to "Logout (#{current_user.name})", destroy_user_session_path, method: :delete, :class => 'item'
+              / User Account: style can be found in dropdown.less
+              %li.dropdown.user.user-menu
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %i.fa.fa-user.fa-fw
+                  %span
+                    #{current_user.name}
+                    %i.caret
+                %ul.dropdown-menu
+                  / User image
+                  %li.user-header.bg-light-blue
+                    - avatar = avatar_url(current_user.email)
+                    - if avatar == "http://gravatar.com/avatar/89affc239bd0c1b6481faaec3cf0c39a.png"
+                      = image_tag "default_pic.png"
+                    - else
+                      = image_tag avatar_url(current_user.email)
+                    / %img.img-circle{:alt => "User Image", :src => "../../img/avatar3.png"}/
+                    %p
+                      - if current_user.authorizations.any?
+                        #{current_user.name} - #{current_user.authorizations.last.provider} User
+                      - else
+                        #{current_user.name} 
+                      %small Member since #{current_user.created_at.strftime("%B %Y")}
+                      %br
+                      %hr  
+                  / / Menu Body
+                  / %li.user-body
+                  /   .col-xs-4.text-center
+                  /     %a{:href => "#"} Followers
+                  /   .col-xs-4.text-center
+                  /     %a{:href => "#"} Sales
+                  /   .col-xs-4.text-center
+                  /     %a{:href => "#"} Friends
+                  / Menu Footer
+                  %li.user-footer
+                    - if current_user.authorizations.any?
+                      .pull-left
+                        = link_to "<i class='fa fa-edit fa-fw'></i> Profile".html_safe, edit_user_path(current_user), :class => 'btn btn-default btn-flat'
+                      .pull-right
+                        = link_to "<i class='fa fa-sign-out fa-fw'></i> Logout".html_safe, destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-flat'
+                    - else
+                      .pull-left
+                        = link_to "<i class='fa fa-edit fa-fw'></i> Edit Profile".html_safe, edit_user_registration_path, :class => 'btn btn-default btn-flat'
+                      .pull-right
+                        = link_to "<i class='fa fa-sign-out fa-fw'></i> Logout".html_safe, destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-flat'
             - else
               %li
                 = link_to "Sign up", new_user_registration_path, :class => 'item'

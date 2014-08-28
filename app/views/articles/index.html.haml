@@ -4,7 +4,7 @@
 .row
   .col-md-8.blog-main
     - if user_signed_in?
-      %p= link_to "Post a new article", new_article_path, :class => 'btn btn-success'  
+      %p= link_to "Post a blog", new_article_path, :class => 'btn btn-success'  
     - if @articles.any?
       - @articles.each do |article|
         .box.box-primary
@@ -45,7 +45,7 @@
         .box-body
           .callout.callout-info
             %i.fa.fa-exclamation-triangle &nbsp;&nbsp; No Bolgs found!
-            %p Please search for another criteria or go back to blogs #{link_to 'Back to Blogs', articles_path}
+            %p Please search for another criteria or go back to the blogs #{link_to 'Back to Blogs', articles_path}
 
 
   / /.blog-main

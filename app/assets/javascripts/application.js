@@ -32,6 +32,19 @@ function like(id) {
   }); 
 } 
 
-  
+$(document).ready(function() {
+  // update social icons for twitter
+  $('a.social-share-button-twitter').append( "<i class='fa fa-twitter'></i>" );
+  $('a.social-share-button-twitter').removeClass('social-share-button-twitter').addClass('btn bg-aqua btn-circle')
+  // update social icons for facebook
+  $('a.social-share-button-facebook').append( "<i class='fa fa-facebook'></i>" );
+  $('a.social-share-button-facebook').removeClass('social-share-button-facebook').addClass('btn bg-blue btn-circle')
+  // update social icons for google-plus
+  $('a.social-share-button-google_plus').append( "<i class='fa fa-google-plus'></i>" );
+  $('a.social-share-button-google_plus').removeClass('social-share-button-google_plus').addClass('btn bg-red btn-circle')
+  // update social icons for google
+  $('a.social-share-button-pinterest').append( "<i class='fa fa-pinterest'></i>" );
+  $('a.social-share-button-pinterest').removeClass('social-share-button-pinterest').addClass('btn bg-dark-red btn-circle')
+});  
 
   

@@ -350,6 +350,7 @@ img {
   width: auto;
 }
 /* Background colors */
+.bg-dark-red,
 .bg-red,
 .bg-yellow,
 .bg-aqua,
@@ -414,6 +415,9 @@ img {
 }
 .bg-maroon {
   background-color: #85144b !important;
+}
+.bg-dark-red {
+  background-color: #d30a2f !important;
 }
 /* Text colors */
 .text-red {
