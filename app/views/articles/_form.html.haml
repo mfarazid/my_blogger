@@ -9,10 +9,11 @@
   = f.text_area :content, :class => "redactor", :rows => 20, :cols => 120
   = f.text_field :tag_list, label: "Tags", help: "list each tag separated by comma (morning, day, night...)" 
   = f.file_field :image, label: "Attach an Image", accept: 'image/png,image/gif,image/jpeg'
-  .input-group
+  .input-group.margin
     %input#blog_image.form-control{:type => "text", :disabled => true}
-    %span.input-group-addon  
-      %a.btn.btn-xs.btn-success{:onclick => "$('input[id=article_image]').click();"} Browse
+    %span.input-group-btn 
+      %a.btn.btn-success.btn-flat{:onclick => "$('input[id=article_image]').click();"} 
+        Browse
   :javascript
     $('input[id=article_image]').change(function() {
       $('#blog_image').val($(this).val());

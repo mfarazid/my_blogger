@@ -6,8 +6,8 @@ MyBlogger::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, 
       controllers: {omniauth_callbacks: "omniauth_callbacks"}
   
-  resources :articles do
-    resources :comments
+  resources :articles, only: [:index, :new, :create, :show, :destroy]  do
+    resources :comments, only: [:create]
   end
   resources :tags
   resources :users, only: [:edit, :update]
