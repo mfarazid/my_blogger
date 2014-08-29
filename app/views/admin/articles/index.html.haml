@@ -1,0 +1,39 @@
+/ Content Header (Page header)
+.main-content  
+  %section.content-header
+    %h1
+      Dashboard
+      %small Control panel
+    %ol.breadcrumb
+      %li
+        %a{:href => root_path}
+          %i.fa.fa-home
+          Home
+      %li
+        %a{:href => admin_dashboard_home_path}
+          %i.fa.fa-dashboard
+          Dashboard
+      %li.active Articles
+  %section.box.box-default
+    .box-body  
+      %h3 Articles
+      .table-responsive
+        %table.table.table-hover
+          %thead.bg-purple
+            %tr
+              %th Title
+              %th Published
+              %th Submitted by
+              %th Submitted on
+              %th 
+          %tbody
+            - @articles.each do |article|
+              %tr
+                %td= article.title
+                %td= article.hidden? ? 'Yes' : 'No' 
+                %td= article.user.name
+                %td= article.created_at.to_formatted_s(:long)
+                %td.btn-group
+                  = link_to '<i class="fa fa-eye"></i>'.html_safe, admin_article_path(article), class: "btn btn-default btn-sm"
+                  = link_to '<i class="fa fa-trash-o"></i>'.html_safe, admin_article_path(article), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm'        
+    .box-footer  

@@ -1,0 +1,37 @@
+/ Content Header (Page header)
+.main-content  
+  %section.content-header
+    %h1
+      Dashboard
+      %small Control panel
+    %ol.breadcrumb
+      %li
+        %a{:href => root_path}
+          %i.fa.fa-home
+          Home
+      %li
+        %a{:href => admin_dashboard_home_path}
+          %i.fa.fa-dashboard
+          Dashboard
+      %li.active Authorizations
+  %section.box.box-default
+    .box-body  
+      %h3 Authorizations
+      .table-responsive
+        %table.table.table-hover
+          %thead.bg-green
+            %tr
+              %th Provider
+              %th Uid
+              %th Created on
+              %th Updated on
+              %th 
+          %tbody
+            - @authorizations.each do |auth|
+              %tr
+                %td= auth.provider
+                %td= auth.uid
+                %td= auth.created_at.to_formatted_s(:long)
+                %td= auth.updated_at.to_formatted_s(:long)
+                %td= link_to '<i class="fa fa-trash-o"></i>'.html_safe, admin_authorization_path(auth), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm'    
+    .box-footer  
