@@ -1,0 +1,35 @@
+/ Content Header (Page header)
+.main-content  
+  %section.content-header
+    %h1
+      Dashboard
+      %small Control panel
+    %ol.breadcrumb
+      %li
+        %a{:href => root_path}
+          %i.fa.fa-home
+          Home
+      %li
+        %a{:href => admin_dashboard_home_path}
+          %i.fa.fa-dashboard
+          Dashboard
+      %li.active Tags
+  %section.box.box-default
+    .box-body  
+      %h3 Tags
+      .table-responsive
+        %table.table.table-hover
+          %thead.bg-maroon
+            %tr
+              %th Name
+              %th Tag to Articles
+              %th Created on
+              %th  
+          %tbody
+            - @tags.each do |tag|
+              %tr
+                %td= tag.name
+                %td= tag.articles.size 
+                %td= tag.created_at.to_formatted_s(:long)
+                %td= link_to '<i class="fa fa-trash-o"></i>'.html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm'    
+    .box-footer  

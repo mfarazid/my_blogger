@@ -55,7 +55,7 @@
         = render partial: 'comments/form'
 
     %div
-      = link_to 'Back to Blogs', articles_path, :class => "btn btn-default"
+      = link_to '<i class="fa fa-arrow-circle-left"></i> Back'.html_safe, articles_path, :class => "btn btn-default"
       - if current_user && @article.user_id == current_user.id 
         = link_to "<i class='fa fa-trash-o'></i> Delete".html_safe, article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}, :class => "btn btn-default"
     %br    

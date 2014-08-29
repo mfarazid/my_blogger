@@ -25,7 +25,6 @@
           %ul.nav.navbar-nav.navbar-right
 
             - if user_signed_in?
-              / User Account: style can be found in dropdown.less
               %li.dropdown.user.user-menu
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   %i.fa.fa-user.fa-fw
@@ -40,23 +39,12 @@
                       = image_tag "default_pic.png"
                     - else
                       = image_tag avatar_url(current_user.email)
-                    / %img.img-circle{:alt => "User Image", :src => "../../img/avatar3.png"}/
                     %p
-                      - if current_user.authorizations.any?
-                        #{current_user.name} - #{current_user.authorizations.last.provider} User
-                      - else
-                        #{current_user.name} 
+                      #{current_user.name} 
                       %small Member since #{current_user.created_at.strftime("%B %Y")}
                       %br
                       %hr  
-                  / / Menu Body
-                  / %li.user-body
-                  /   .col-xs-4.text-center
-                  /     %a{:href => "#"} Followers
-                  /   .col-xs-4.text-center
-                  /     %a{:href => "#"} Sales
-                  /   .col-xs-4.text-center
-                  /     %a{:href => "#"} Friends
+
                   / Menu Footer
                   %li.user-footer
                     - if current_user.authorizations.any?
@@ -75,7 +63,6 @@
               %li
                 = link_to "Login", new_user_session_path, :class => 'item'
         / /.nav-collapse
-
 
     %section.container
       = yield

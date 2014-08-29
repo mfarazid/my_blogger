@@ -1,0 +1,70 @@
+/ Content Header (Page header)
+.main-content  
+  %section.content-header
+    %h1
+      Dashboard
+      %small Control panel
+    %ol.breadcrumb
+      %li
+        %a{:href => root_path}
+          %i.fa.fa-home
+          Home
+      %li
+        %a{:href => admin_dashboard_home_path}
+          %i.fa.fa-dashboard
+          Dashboard
+      %li.active Users
+  %section.box.box-default
+    .box-body       
+      .row
+        / Users Info
+        .col-lg-6.col-xs-6
+          %h3 Users Info
+          %section.box.box-primary
+            .box-body           
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th.bold Fields
+                    %th.bold Description
+                %tbody
+                  %tr
+                    %td.bold Name:
+                    %td= @user.name
+                  %tr
+                    %td.bold Email:
+                    %td= @user.email
+                  %tr
+                    %td.bold Last Login:
+                    %td= @user.last_sign_in_at.to_formatted_s(:long)
+                  %tr
+                    %td.bold Last Login IP:
+                    %td= @user.last_sign_in_ip
+                  %tr
+                    %td.bold Created on:
+                    %td= @user.created_at.to_formatted_s(:long)
+                  %tr
+                    %td.bold Update on:
+                    %td= @user.updated_at.to_formatted_s(:long)       
+        / Users Authorizations
+        .col-lg-6.col-xs-6
+          %h3 Users Authorizations
+          %section.box.box-success
+            .box-body               
+              .table-responsive
+                %table.table.table-hover
+                  %thead
+                    %tr
+                      %th Provider
+                      %th Uid
+                      %th Last Authorized
+                      %th 
+                  %tbody
+                    - @user.authorizations.each do |user_auth|
+                      %tr
+                        %td= user_auth.provider
+                        %td= user_auth.uid
+                        %td= user_auth.created_at.to_formatted_s(:long)
+                        %td= link_to '<i class="fa fa-trash-o"></i>'.html_safe, admin_authorization_path(user_auth, :back_to => @user.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm' 
+    .box-footer
+      = link_to '<i class="fa fa-arrow-circle-left"></i> Back'.html_safe, admin_users_path, :class => 'btn btn-default' 

@@ -1,0 +1,42 @@
+/ Content Header (Page header)
+.main-content  
+  %section.content-header
+    %h1
+      Dashboard
+      %small Control panel
+    %ol.breadcrumb
+      %li
+        %a{:href => root_path}
+          %i.fa.fa-home
+          Home
+      %li
+        %a{:href => admin_dashboard_home_path}
+          %i.fa.fa-dashboard
+          Dashboard
+      %li.active Users
+  %section.box.box-default
+    .box-body       
+      %h3 Users
+
+      .table-responsive
+        %table.table.table-hover
+          %thead.bg-blue
+            %tr
+              %th Name
+              %th Email
+              %th Last login
+              %th Created on
+              %th Updated on
+              %th  
+          %tbody
+            - @users.each do |user|
+              %tr
+                %td= user.name
+                %td= user.email 
+                %td= user.last_sign_in_at.to_formatted_s(:long)
+                %td= user.created_at.to_formatted_s(:long)
+                %td= user.updated_at.to_formatted_s(:long)
+                %td.btn-group
+                  = link_to '<i class="fa fa-eye"></i>'.html_safe, admin_user_path(user), class: "btn btn-default btn-sm"
+                  = link_to '<i class="fa fa-trash-o"></i>'.html_safe, admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm'
+    .box-footer  
