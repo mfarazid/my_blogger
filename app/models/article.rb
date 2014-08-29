@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  before_create :set_hidden_flag
+  before_create :set_published
   belongs_to :user
   has_many :comments
   has_many :taggings
@@ -29,7 +29,7 @@ class Article < ActiveRecord::Base
   end
 
   private
-    def set_hidden_flag
-      self.hidden = 1
+    def set_published
+      self.published = 0
     end  
 end

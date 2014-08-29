@@ -24,7 +24,7 @@ MyBlogger::Application.routes.draw do
   namespace :admin do
     get 'dashboard/home' => "dashboard#home", as: :dashboard_home
     resources :dashboard, only: [:home]
-    resources :articles, only: [:index, :show, :destroy]
+    resources :articles, only: [:index, :show, :update, :destroy]
     resources :tags, only: [:index, :destroy]
     resources :authorizations, only: [:index, :destroy]
     resources :users, only: [:index, :show, :destroy]

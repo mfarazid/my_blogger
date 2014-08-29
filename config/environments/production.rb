@@ -81,17 +81,17 @@ MyBlogger::Application.configure do
     # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.elphax.com",
+    address: "smtp.yourdomain.com",
     port: 25,
     authentication: "plain",
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"],
+    user_name: ENV["YOUR_USERNAME"],
+    password: ENV["YOUR_PASSWORD"],
     openssl_verify_mode: 'none'
   }
 
   # Specify what domain to use for mailer URLs
 
-  config.action_mailer.default_url_options = { host: 'my-blogger.elphax.com', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'yourdomain.com', port: 3000 }
 
   Koala.http_service.ca_file = Rails.root.join("cacert.pem").to_s
 end

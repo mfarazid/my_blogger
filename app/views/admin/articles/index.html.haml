@@ -30,7 +30,7 @@
             - @articles.each do |article|
               %tr
                 %td= article.title
-                %td= article.hidden? ? 'Yes' : 'No' 
+                %td #{article.published? ? 'Yes' : 'No'} ( #{article.published_at.to_formatted_s(:long) if article.published_at.present?} )
                 %td= article.user.name
                 %td= article.created_at.to_formatted_s(:long)
                 %td.btn-group

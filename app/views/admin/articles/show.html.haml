@@ -19,6 +19,19 @@
       .row
         .col-lg-12.blog-main
           .box.box-primary
+            .blox-header.bg-light-blue
+              .box-title
+                = bootstrap_form_for([:admin, @article], inline_errors: false) do |f|                
+                  %h3
+                    = f.form_group :published, label: { text: "Published", id: 'published_label'} do
+                      - if @article.published?
+                        = f.radio_button :published, 1, label: " Yes", inline: true, checked: true
+                        = f.radio_button :published, 0, label: " No", inline: true
+                      - else  
+                        = f.radio_button :published, 1, label: " Yes", inline: true
+                        = f.radio_button :published, 0, label: " No", inline: true, checked: true
+                      
+                      = f.submit "Submit", :class => "btn btn-default btn-xs"            
             .blog-post
               .header
                 %div#blog-status

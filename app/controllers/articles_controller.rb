@@ -4,9 +4,9 @@ class ArticlesController < ApplicationController
   
   def index
     if params[:start_date].present? && params[:end_date].present?
-      @articles = Article.created_between(params[:start_date],params[:end_date]).where(:hidden => false).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+      @articles = Article.created_between(params[:start_date],params[:end_date]).where(:published => true).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
     else
-      @articles = Article.where(:hidden => false).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+      @articles = Article.where(:published => true).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
     end
     @tags = Tag.all
   end
@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
     @comment.article_id = @article.id
     @article.increment!(:view_count)
-    if @article.hidden == true 
+    if @article.published == false 
       toast('error','This Blog is currently unavailable to view at this time!')
       redirect_to articles_url
     end
@@ -70,6 +70,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id, :hidden, :published_at, :like, :view_count)
+      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id, :published, :published_at, :like, :view_count)
     end
 end

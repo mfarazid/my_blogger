@@ -206,20 +206,6 @@ body > .header {
 }
 
 
-
-/* Pagination */
-.pager {
-  margin-bottom: 60px;
-  text-align: left;
-}
-.pager > li > a {
-  width: 140px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 30px;
-}
-
-
 /*
  * Blog posts
  */
@@ -248,7 +234,9 @@ body > .header {
   margin-bottom: 15px;
   margin-top: -15px;
 }
-
+#published_label {
+  padding: 15px;
+}
 .image_responsive {
   max-width:100%; 
   max-height:100%;

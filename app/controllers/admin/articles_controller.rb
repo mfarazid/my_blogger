@@ -10,8 +10,10 @@ class Admin::ArticlesController < ApplicationController
   end
   
   def update
-    if @article.update(user_params)
-      toast('success','blog #{@article.title} is published!')
+    if @article.update(article_params)
+      @article.published_at = Time.now 
+      @article.save 
+      toast('success',"blog #{@article.title} is now published!")
       redirect_to admin_article_path(@article)
     end
   end
@@ -30,6 +32,6 @@ class Admin::ArticlesController < ApplicationController
     end  
     
     def article_params
-      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id, :hidden, :published_at, :like, :view_count)
+      params.require(:article).permit(:title, :content, :tag_list, :image, :user_id, :published, :published_at, :like, :view_count)
     end
 end
