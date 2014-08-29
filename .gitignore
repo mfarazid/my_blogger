@@ -16,7 +16,7 @@ db/schema.rb
 config/database.yml
 config/deploy.rb
 config/social_keys.yml
-
+config/environments/production.rb
 
 ## Environment normalisation:
 /.bundle
