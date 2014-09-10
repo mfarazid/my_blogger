@@ -1,14 +1,5 @@
 MyBlogger::Application.routes.draw do
 
-  get "articles/index"
-  get "articles/show"
-  get "tags/index"
-  get "tags/show"
-  get "authorizations/index"
-  get "authorizations/show"
-  get "users/index"
-  get "users/Index"
-  get "users/show"
   mount RedactorRails::Engine => '/redactor_rails'
   root to: "articles#index"
   get 'articles/like/:id' => "articles#like", as: :article_like
@@ -18,8 +9,9 @@ MyBlogger::Application.routes.draw do
   resources :articles, only: [:index, :new, :create, :show, :destroy]  do
     resources :comments, only: [:create]
   end
-  resources :tags
+  resources :tags, only: [:show]
   resources :users, only: [:edit, :update]
+  resources :authorizations, only: [:index, :show]
 
   namespace :admin do
     get 'dashboard/home' => "dashboard#home", as: :dashboard_home

@@ -1,10 +1,23 @@
 !!!
 %html
   %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+    / <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    /  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    
     %title MyBlogger
+    / Fav and touch icons
+    %link{:href => "http://elphax.com/assets/ico/apple-touch-icon-114x114.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}
+    %link{:href => "http://elphax.com/assets/ico/apple-touch-icon-72x72.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}
+    %link{:href => "http://elphax.com/assets/ico/favicon.png", :rel => "shortcut icon"}
+    %link{:href => "http://elphax.com/assets/ico/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
   %body
     / flash notifications
     - if flash[:toastr]

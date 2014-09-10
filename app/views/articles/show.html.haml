@@ -34,7 +34,7 @@
             - @article.tags.each do |tag|
               = link_to tag.name, tag_path(tag), :class => 'label label-default'
           %hr
-          %span #{link_to "<i class='fa fa-thumbs-o-up'></i>".html_safe, '#', :onclick => "like('#{@article.id}')", :class => "btn bg-maroon btn-circle pull-right", :id => 'like_it'} #{social_share_button_tag(@article.title, :url => request.original_url, :image => @article.image.url)}
+          %span #{link_to "<i class='fa fa-thumbs-o-up'></i>".html_safe, '#', :onclick => "like('#{@article.id}')", :class => "btn bg-maroon btn-circle pull-right", :id => 'like_it'} #{social_share_button_tag(@article.title, :url => request.original_url, :image => "http://my-blogger.elphax.com"+@article.image.url, desc: strip_tags(HTML_Truncator.truncate(@article.content, 25, "...") ))}
 
     / Chat box
     - if @article.comments.any?

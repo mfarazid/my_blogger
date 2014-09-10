@@ -33,6 +33,19 @@ function like(id) {
 } 
 
 $(document).ready(function() {
+  WebFontConfig = {
+    google: { families: [ 'Kaushan+Script::latin', 'Source+Sans+Pro:400,300,600,300italic,400italic,600italic:latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();  
+
   // update social icons for twitter
   $('a.social-share-button-twitter').append( "<i class='fa fa-twitter'></i>" );
   $('a.social-share-button-twitter').removeClass('social-share-button-twitter').addClass('btn bg-aqua btn-circle')
@@ -45,6 +58,7 @@ $(document).ready(function() {
   // update social icons for google
   $('a.social-share-button-pinterest').append( "<i class='fa fa-pinterest'></i>" );
   $('a.social-share-button-pinterest').removeClass('social-share-button-pinterest').addClass('btn bg-dark-red btn-circle')
+  $('div.redactor_form-control').css('height', '414px');
 });  
 
   

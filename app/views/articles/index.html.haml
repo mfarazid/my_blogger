@@ -5,6 +5,8 @@
   .col-md-8.blog-main
     - if user_signed_in?
       %p= link_to "Post a blog", new_article_path, :class => 'btn btn-success'  
+    - else
+      .alert.alert-info Please login to post a blog!  
     - if @articles.any?
       - @articles.each do |article|
         .box.box-primary

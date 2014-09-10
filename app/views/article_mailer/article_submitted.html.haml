@@ -11,9 +11,9 @@
         %h3.box-title #{@article.title} 
       .box-body
         %figure
-          = image_tag @article.image.url, :class => 'image_responsive'
+          = image_tag "http://my-blogger.elphax.com/#{@article.image.url}", :class => 'image_responsive'
         %p #{@article.content.html_safe} 
         %hr
-        %p Please login #{link_to 'MyBlogger site', root_path} to manage blogs.    
+        %p Please login #{link_to 'MyBlogger Administration', 'http://my-blogger.elphax.com/admin/dashboard/home'} to manage blogs.    
       .box-footer
         %p Thank you!

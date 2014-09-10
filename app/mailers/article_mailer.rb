@@ -1,5 +1,5 @@
 class ArticleMailer < ActionMailer::Base
-  default from: "noreply@blogger.elphax.com"
+  default from: "info@elphax.com"
 
   def article_submitted(article)
     @article = article
