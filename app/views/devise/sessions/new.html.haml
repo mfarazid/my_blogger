@@ -3,8 +3,8 @@
     %h3 Login
     = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = devise_error_messages!
-      = f.email_field :email, prepend: "<i class='fa fa-envelope-o'></i>".html_safe, required: true
-      = f.password_field :password, autocomplete: "off", prepend: "<i class='fa fa-lock'></i>".html_safe, required: true  
+      = f.email_field :email, hide_label: true, prepend: "<i class='fa fa-envelope-o'></i>".html_safe, required: true, placeholder: "Email"
+      = f.password_field :password, hide_label: true, autocomplete: "off", prepend: "<i class='fa fa-lock'></i>".html_safe, required: true, placeholder: "Password"  
       - if devise_mapping.rememberable?
         = f.check_box :remember_me   
       = f.submit "Login", :class => 'btn bg-navy'
@@ -12,10 +12,14 @@
       %br
       - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
         = link_to "Forgot your password?", new_password_path(resource_name)
-  %br/
-  .col-sm-2
-  .ui.vertical.divider 
-    or
+  #max_divider
+    .col-sm-2
+    .ui.vertical.divider 
+      or
+  #min_divider
+    .col-sm-2
+    .ui.horizontal.divider 
+      or
   .col-sm-5
     %h3 Login
     %br

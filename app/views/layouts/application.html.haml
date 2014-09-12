@@ -72,7 +72,7 @@
                         = link_to "<i class='fa fa-sign-out fa-fw'></i> Logout".html_safe, destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-flat'
             - else
               %li
-                = link_to "Sign up", new_user_registration_path, :class => 'item'
+                = link_to "Register", new_user_registration_path, :class => 'item'
               %li
                 = link_to "Login", new_user_session_path, :class => 'item'
         / /.nav-collapse
